@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<title>Hello,Django</title>
+	</head>
+	<body>
+		<h2>发布会管理系统</h2>
+		<form method="post" action="/login_action/">
+			<input name="username" type="text" placeholder="username"><br>
+			<input name="password" type="text" placeholder="password"><br>
+			{{error}}<br>
+			<button id="btn" type="submit">登录</button>
+			{% csrf_token %}
+		</form>
+	</body>
+</html>
