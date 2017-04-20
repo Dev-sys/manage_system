@@ -1,0 +1,80 @@
+<html lang="zh-CN">
+	<head>
+		{% load bootstrap3 %}
+		{% bootstrap_css %}
+		{% bootstrap_javascript %}
+		<title>Devon's first blog</title>
+	</head>
+	<body role="document">
+		<!-- 导航栏-->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/blog/">Devon's Blog</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/blog/personal_manage/">个人</a></li>
+						<li><a href="/blog/live_manage/">生活</a></li>
+						<li><a href="/bolg/work_manage/">工作</a></li>
+						<li><a href="/blog/habit_manage/">兴趣</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Welcome</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!--blog名称搜索表单-->
+		<br>
+		<div class="page-header">
+			<div id="navbar" class="navbar-collapse collapse navbar-right">
+				<form class="navbar-form" method="get" action="/blog/search_blog/">
+					<div class="form-group">
+						<input name="name" type="text" placeholder="名称" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-success">搜索</button>
+				</form>
+			</div>
+		</div>
+		<!-- blog列表-->
+		<div class="row">
+			<div class="col-md-6">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>title</th><th>time</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for blog in Blogs %}
+						<tr>
+							<td ><a href="/blog/blog_detail/{{ blog.id }}/">{{ blog.blog_title }}</td><br>
+							<td>{{ blog.create_time }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 列表分页器-->
+		<div class="pagination">
+			<span class="step-links">
+				{% if Blogs.has_previous %}
+					<a href="?page={{ Blogs.previous_page_number }}">previous</a>
+				{% endif %}
+			<span class="current">
+				Page {{ Blogs.number }} of {{ Blogs.paginator.num_pages }}.
+			</span>
+				{% if Blogs.has_next %}
+					<a href="?page={{ Blogs.next_page_number }}">next</a>
+				{% endif %}
+			</span>
+			<form method="get" action="/blog/personal_manage/">
+				<input name="page" type="text" placeholder="page number">
+				<button id ="btn" type="submit">confirm</button>
+				<br>
+			</form>
+		</div>
+	</body>
+</html>
