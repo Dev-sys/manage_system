@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from sign import views
+from blog import blogviews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,9 +26,16 @@ urlpatterns = [
     url(r'^accounts/login/',views.login_action),
     url(r'^$',views.index),
     url(r'^search_name/',views.search_name),
-    url(r'^guest_manage/$', views.guest_manage),
+    url(r'^guest_manage/$',views.guest_manage),
     url(r'^search_realname/',views.search_realname),
     url(r'^sign_index/(?P<event_id>[0-9]+)/$', views.sign_index),
     url(r'^sign_index_action/(?P<event_id>[0-9]+)/$', views.sign_index_action),
     url(r'^logout/$', views.logout),
+    url(r'^blog/$', blogviews.blog),
+    url(r'^blog/personal_manage/$',blogviews.personal),
+    url(r'^blog/live_manage/$',blogviews.live),
+    url(r'^blog/work_manage/$',blogviews.work),
+    url(r'^blog/habit_manage/$',blogviews.habit),
+    url(r'^blog/search_blog/$',blogviews.search),
+    url(r'^blog/blog_detail/(?P<blog_id>[0-9]+)/$', blogviews.blog_detail),
 ]

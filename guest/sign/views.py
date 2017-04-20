@@ -76,7 +76,7 @@ def search_realname(request):
     return render(request, "guest_manage.html", {"user": username,
                                                 "guests": guest_list})
 
-@login_required
+#@login_required
 def sign_index(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     return render(request, 'sign_index.html', {'event': event})
